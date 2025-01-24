@@ -25,7 +25,6 @@ const actions = [
 
 
 function MySpeedDial({ args, disabled, theme }: ComponentProps): ReactElement {
-  const { name } = args
   const [isFocused, setIsFocused] = useState(false)
   const [numClicks, setNumClicks] = useState('Test')
 
@@ -48,44 +47,13 @@ function MySpeedDial({ args, disabled, theme }: ComponentProps): ReactElement {
     Streamlit.setFrameHeight()
   }, [style, theme])
 
-  /** Click handler for our "Click Me!" button. */
-  const onClicked = useCallback((): void => {
-    // const numClicks = value
-    // setNumClicks((numClicks) => numClicks)
-    // setNumClicks(numClicks)
-    // console.log(action.action)
-  }, [])
-
-  /** Focus handler for our "Click Me!" button. */
-  const onFocus = useCallback((): void => {
-    setIsFocused(true)
-  }, [])
-
-  /** Blur handler for our "Click Me!" button. */
-  const onBlur = useCallback((): void => {
-    setIsFocused(false)
-  }, [])
-
-  const [selectedAction, setSelectedAction] = useState('');
 
   const handleActionClick = (actionName:string) => {
-    setSelectedAction(actionName); // Save the selected action name
-    console.log('Selected Action:', actionName); // Log the selected action
     Streamlit.setComponentValue(actionName)
   };
 
   return (
     <span>
-      Hello, {name}! &nbsp;
-      {/* <button
-        style={style}
-        onClick={onClicked}
-        disabled={disabled}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      >
-        Click Me!
-      </button> */}
       <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
       <SpeedDial
         
