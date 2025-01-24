@@ -81,3 +81,4 @@ def speed_dial(name, key=None):
 
 output = speed_dial(name="Salam")
 st.write(output)
+

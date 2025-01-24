@@ -13,19 +13,21 @@ import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import PrintIcon from '@mui/icons-material/Print';
 import ShareIcon from '@mui/icons-material/Share';
+import { ReplyTwoTone, UploadFile } from "@mui/icons-material";
 
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
   { icon: <SaveIcon />, name: 'Save' },
   { icon: <PrintIcon />, name: 'Print' },
   { icon: <ShareIcon />, name: 'Share' },
+  { icon: <UploadFile/>, name: 'Upload' },
 ];
 
 
 function MySpeedDial({ args, disabled, theme }: ComponentProps): ReactElement {
   const { name } = args
   const [isFocused, setIsFocused] = useState(false)
-  const [numClicks, setNumClicks] = useState(0)
+  const [numClicks, setNumClicks] = useState('Test')
 
   const style: React.CSSProperties = useMemo(() => {
     if (!theme) return {}
@@ -48,7 +50,10 @@ function MySpeedDial({ args, disabled, theme }: ComponentProps): ReactElement {
 
   /** Click handler for our "Click Me!" button. */
   const onClicked = useCallback((): void => {
-    setNumClicks((prevNumClicks) => prevNumClicks + 1)
+    // const numClicks = value
+    // setNumClicks((numClicks) => numClicks)
+    // setNumClicks(numClicks)
+    // console.log(action.action)
   }, [])
 
   /** Focus handler for our "Click Me!" button. */
@@ -61,11 +66,18 @@ function MySpeedDial({ args, disabled, theme }: ComponentProps): ReactElement {
     setIsFocused(false)
   }, [])
 
-  
+  const [selectedAction, setSelectedAction] = useState('');
+
+  const handleActionClick = (actionName:string) => {
+    setSelectedAction(actionName); // Save the selected action name
+    console.log('Selected Action:', actionName); // Log the selected action
+    Streamlit.setComponentValue(actionName)
+  };
+
   return (
     <span>
       Hello, {name}! &nbsp;
-      <button
+      {/* <button
         style={style}
         onClick={onClicked}
         disabled={disabled}
@@ -73,18 +85,20 @@ function MySpeedDial({ args, disabled, theme }: ComponentProps): ReactElement {
         onBlur={onBlur}
       >
         Click Me!
-      </button>
+      </button> */}
       <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
       <SpeedDial
+        
         ariaLabel="SpeedDial basic example"
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
-      >
+        >
         {actions.map((action) => (
           <SpeedDialAction
-            key={action.name}
-            icon={action.icon}
-            tooltipTitle={action.name}
+          key={action.name}
+          icon={action.icon}
+          tooltipTitle={action.name}
+          onClick={() => handleActionClick(action.name)}
           />
         ))}
       </SpeedDial>
