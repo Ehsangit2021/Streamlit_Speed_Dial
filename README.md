@@ -5,3 +5,8 @@ This is a react based project creating a speed dial element for using inside str
 - import speed_dial as sd
 - output = sd.speed_dial(name="Salam")
 - st.write(output)
+
+
+![image](https://github.com/user-attachments/assets/e54d7039-dfed-45e3-a625-2b7b7c294aaa)
+
+The speed dial will return name of selected option
