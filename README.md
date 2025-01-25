@@ -11,3 +11,5 @@ This is a react based project creating a speed dial element for using inside str
 ![image](https://github.com/user-attachments/assets/e54d7039-dfed-45e3-a625-2b7b7c294aaa)
 
 The speed dial will return name of selected option
+
+![speed-dial](https://github.com/user-attachments/assets/a5c787f9-51c8-43ca-9925-263f9593234b)
